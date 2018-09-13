@@ -1,6 +1,7 @@
 # flutter_oschina
 
-os china
+基于flutter实现的开源中国客户端
+
 
 ## Getting Started
 
