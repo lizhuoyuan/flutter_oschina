@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_oschina/page/DiscoverListPage.dart';
+import 'package:flutter_oschina/page/DrawerPage.dart';
 import 'package:flutter_oschina/page/MyInfoListPage.dart';
 import 'package:flutter_oschina/page/NewsDetailPage.dart';
 import 'package:flutter_oschina/page/NewsListPage.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatefulWidget {
 }
 
 class MainState extends State<MyApp> {
+  //当前选中的index
   int _index = 0;
 
   // 页面顶部的大标题（也是TabItem上的文本）
@@ -26,6 +28,8 @@ class MainState extends State<MyApp> {
     Icons.disc_full,
     Icons.person
   ];
+
+  //显示的page页面
   var pages = [
     NewsListPage(),
     TweetsListPage(),
@@ -56,7 +60,7 @@ class MainState extends State<MyApp> {
           activeColor: Colors.green,
         ),
         // drawer属性用于为当前页面添加一个侧滑菜单
-        drawer: Drawer(child: Center(child: Text('我是侧滑哟~'))),
+        drawer: DrawerPage(),
       ),
       routes: <String, WidgetBuilder>{
         'NewsDetail': (_) => NewsDetailPage(),

@@ -10,12 +10,10 @@ class NewsListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: RaisedButton(
-        onPressed: () {
-          Navigator.pushNamed(context, 'NewsDetail');
-        },
-        child: Text('goto detail'),
-      ),
-    );
+        child: RaisedButton(
+            child: Text('go to NewsDetail'),
+            onPressed: () {
+              Navigator.pushNamed(context, 'NewsDetail');
+            }));
   }
 }
