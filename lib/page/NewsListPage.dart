@@ -6,7 +6,12 @@
 
 import 'package:flutter/material.dart';
 
-class NewsListPage extends StatelessWidget {
+class NewsListPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => NewsListState();
+}
+
+class NewsListState extends State {
   @override
   Widget build(BuildContext context) {
     return Center(

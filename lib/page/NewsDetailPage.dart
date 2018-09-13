@@ -5,16 +5,26 @@
  */
 
 import 'package:flutter/material.dart';
+import '../widgets/LoadingWidget.dart';
 
-class NewsDetailPage extends StatelessWidget {
+class NewsDetailPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => NewsDetailState();
+}
+
+class NewsDetailState extends State<NewsDetailPage> {
+  int text = 1;
+
   @override
   Widget build(BuildContext context) {
+    print('widget build');
+
     return Scaffold(
       body: Center(
-        child: Text('咨询详情'),
+        child: LoadingWidget(),
       ),
       appBar: AppBar(
-        title: Text('咨询详情'),
+        title: Text('资讯详情'),
       ),
     );
   }
