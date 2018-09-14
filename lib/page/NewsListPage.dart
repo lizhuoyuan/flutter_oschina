@@ -38,10 +38,10 @@ class NewsListState extends State {
     for (int i = 0; i < 10; i++) {
       Map map = new Map();
       // 列表item的标题
-      map['title'] = 'J2Cache 2.3.23 发布，支持 memcached 二级缓存';
+      map['title'] = '我看完掘金上的227篇文章，总结出一份 Flutter 入门教程';
       // 列表item的作者头像URL
       map['authorImg'] =
-          'https://static.oschina.net/uploads/user/0/12_50.jpg?t=1421200584000';
+          'https://leancloud-gold-cdn.xitu.io/a002a12e5ff6aa771d02.jpg';
       // 列表item的时间文本
       map['timeStr'] = '2018/7/30';
       // 列表item的资讯图片
