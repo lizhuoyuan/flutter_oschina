@@ -50,7 +50,7 @@ class SliderViewState extends State<SliderView>
                       width:
                           window.physicalSize.width / window.devicePixelRatio,
                       height: 250.0,
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                     Container(
                       color: Color.fromRGBO(0, 0, 0, 0.5),

@@ -102,11 +102,34 @@ class NewsListState extends State {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(
-                      listData[index]['timeStr'],
+                    Row(
+                      children: <Widget>[
+                        CircleAvatar(
+                          backgroundImage:
+                              NetworkImage(listData[index]['authorImg']),
+                          radius: 10.0,
+                        ),
+                        Container(
+                            margin: EdgeInsets.only(left: 5.0),
+                            child: Text(
+                              listData[index]['timeStr'],
+                            ))
+                      ],
                     ),
-                    Text(
-                      listData[index]['commCount'].toString(),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                            margin: EdgeInsets.only(right: 5.0),
+                            child: Text(
+                              listData[index]['commCount'].toString(),
+                            )),
+                        Icon(
+                          Icons.forum,
+                          color: Colors.grey,
+                          size: 20.0,
+                        )
+                      ],
                     )
                   ],
                 )
@@ -117,7 +140,7 @@ class NewsListState extends State {
             listData[index]['thumb'],
             width: 100.0,
             height: 100.0,
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           )
         ],
       ),
