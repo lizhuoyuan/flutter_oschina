@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3eced949-553e-4768-b0e9-d8c923059876" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/lib/page/NewsListPage.dart" afterPath="$PROJECT_DIR$/lib/page/NewsListPage.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/SliderView.dart" afterPath="$PROJECT_DIR$/lib/widgets/SliderView.dart" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -44,8 +43,8 @@
       <file leaf-file-name="NewsListPage.dart" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/page/NewsListPage.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="136" column="14" lean-forward="true" selection-start-line="136" selection-start-column="14" selection-end-line="136" selection-end-column="14" />
+            <state relative-caret-position="228">
+              <caret line="28" column="42" lean-forward="false" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
               <folding>
                 <element signature="e#78#117#0" expanded="true" />
               </folding>
@@ -530,8 +529,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/page/NewsListPage.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="136" column="14" lean-forward="true" selection-start-line="136" selection-start-column="14" selection-end-line="136" selection-end-column="14" />
+        <state relative-caret-position="228">
+          <caret line="28" column="42" lean-forward="false" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
           <folding>
             <element signature="e#78#117#0" expanded="true" />
           </folding>

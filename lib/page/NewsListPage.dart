@@ -26,7 +26,7 @@ class NewsListState extends State {
     for (int i = 0; i < 3; i++) {
       Map map = new Map();
       // 轮播图的资讯标题
-      map['title'] = 'Python 之父透露退位隐情';
+      map['title'] = 'Google 之flutter 强势上位隐情';
       // 轮播图的详情URL
       map['detailUrl'] =
           'https://www.oschina.net/news/98455/guido-van-rossum-resigns';
