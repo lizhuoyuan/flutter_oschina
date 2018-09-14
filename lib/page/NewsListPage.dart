@@ -6,7 +6,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_oschina/widgets/SliderView.dart';
-import 'dart:ui';
+
 
 class NewsListPage extends StatefulWidget {
   @override

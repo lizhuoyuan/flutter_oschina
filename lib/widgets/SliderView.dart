@@ -5,7 +5,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'dart:ui';
 
 class SliderView extends StatefulWidget {
   // data表示轮播图中的数据
@@ -47,16 +46,14 @@ class SliderViewState extends State<SliderView>
                   children: <Widget>[
                     Image.network(
                       data['imgUrl'],
-                      width:
-                          window.physicalSize.width / window.devicePixelRatio,
+                      width: MediaQuery.of(context).size.width,
                       height: 250.0,
                       fit: BoxFit.cover,
                     ),
                     Container(
                       color: Color.fromRGBO(0, 0, 0, 0.5),
                       height: 25.0,
-                      width:
-                          window.physicalSize.width / window.devicePixelRatio,
+                      width: MediaQuery.of(context).size.width,
                       alignment: Alignment.center,
                       child: Text(
                         data['title'],
