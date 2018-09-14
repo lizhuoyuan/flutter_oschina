@@ -2,7 +2,7 @@
 
 基于flutter实现的开源中国客户端
 
-
+![](app1.png)
 ## Getting Started
 
 For help getting started with Flutter, view our online
