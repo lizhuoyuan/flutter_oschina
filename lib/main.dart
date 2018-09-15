@@ -28,6 +28,7 @@ class MainState extends State<MyApp> {
     Icons.disc_full,
     Icons.person
   ];
+  var colors = [Colors.blue, Colors.grey, Colors.green, Colors.red];
 
   //显示的page页面
   var pages = [
@@ -48,17 +49,27 @@ class MainState extends State<MyApp> {
       ),
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: colors[_index],
           title: Text(
             appBarTitles[_index],
           ),
         ),
         body: pages[_index],
-        bottomNavigationBar: CupertinoTabBar(
+        bottomNavigationBar: BottomNavigationBar(
           items: _getBottomNavItem(),
           currentIndex: _index,
           onTap: _onTap,
-          activeColor: Colors.green,
+          fixedColor: Colors.green,
+          type: BottomNavigationBarType.shifting,
         ),
+        /**
+         * CupertinoTabBar(
+            items: _getBottomNavItem(),
+            currentIndex: _index,
+            onTap: _onTap,
+            activeColor: Colors.green,
+            )
+         */
         // drawer属性用于为当前页面添加一个侧滑菜单
         drawer: DrawerPage(),
       ),
@@ -72,7 +83,10 @@ class MainState extends State<MyApp> {
     List<BottomNavigationBarItem> list = new List();
     for (int i = 0; i < 4; i++) {
       list.add(BottomNavigationBarItem(
-          icon: Icon(icons[i]), title: Text(appBarTitles[i])));
+        icon: Icon(icons[i]),
+        title: Text(appBarTitles[i]),
+        backgroundColor: colors[i],
+      ));
     }
     return list;
   }
