@@ -9,17 +9,19 @@ import 'package:flutter/material.dart';
 class LoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        CircularProgressIndicator(
-          strokeWidth: 1.0,
-        ),
-        Container(
-          child: Text("正在加载"),
-          margin: EdgeInsets.only(top: 10.0),
-        )
-      ],
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          CircularProgressIndicator(
+            strokeWidth: 1.0,
+          ),
+          Container(
+            child: Text("正在加载"),
+            margin: EdgeInsets.only(top: 10.0),
+          )
+        ],
+      ),
     );
   }
 }

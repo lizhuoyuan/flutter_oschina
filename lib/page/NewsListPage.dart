@@ -4,9 +4,13 @@
  * 资讯页
  */
 
-import 'package:flutter/material.dart';
-import 'package:flutter_oschina/widgets/SliderView.dart';
+import 'dart:async';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_oschina/widgets/LoadingWidget.dart';
+import 'package:flutter_oschina/widgets/SliderView.dart';
+import 'package:flutter_oschina/utils/HttpUtil.dart';
+import 'package:flutter_oschina/utils/Api.dart';
 
 class NewsListPage extends StatefulWidget {
   @override
@@ -22,6 +26,21 @@ class NewsListState extends State {
 
   @override
   void initState() {
+    getData();
+    //initTestData();
+    super.initState();
+  }
+
+  Future getData() async {
+    String url = Api.NEWS_LIST + "?pageIndex=1&pageSize=10";
+    var response = await HttpUtil().get(url);
+    setState(() {
+      imgs = response['msg']['slide'];
+      listData = response['msg']['news']['data'];
+    });
+  }
+
+  void initTestData() {
     // 这里做数据初始化，加入一些测试数据
     for (int i = 0; i < 3; i++) {
       Map map = new Map();
@@ -51,11 +70,13 @@ class NewsListState extends State {
       map['commCount'] = 5;
       listData.add(map);
     }
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (listData == null || listData.length == 0) {
+      return LoadingWidget();
+    }
     return Scaffold(
         body: ListView.builder(
       itemCount: listData.length * 2 + 1,

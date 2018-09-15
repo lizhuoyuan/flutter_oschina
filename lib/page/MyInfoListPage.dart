@@ -14,9 +14,6 @@ class MyInfoListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    accountController.addListener(() {
-      print('accountController：${accountController.text}');
-    });
     return Center(
       child: Column(
         children: <Widget>[
