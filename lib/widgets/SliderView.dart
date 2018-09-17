@@ -57,6 +57,8 @@ class SliderViewState extends State<SliderView>
                       alignment: Alignment.center,
                       child: Text(
                         data['title'],
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis, // 溢出显示。。。
                         style: TextStyle(color: Colors.white, fontSize: 18.0),
                         maxLines: 1,
                       ),

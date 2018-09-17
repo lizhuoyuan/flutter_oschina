@@ -6,6 +6,7 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_oschina/widgets/FailLoadWidget.dart';
 import 'package:flutter_oschina/widgets/LoadingWidget.dart';
 import 'package:flutter_oschina/widgets/SliderView.dart';
 import 'package:flutter_oschina/utils/HttpUtil.dart';
@@ -77,7 +78,9 @@ class NewsListState extends State<NewsListPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (listData == null || listData.length == 0) {
+    if (listData == null) {
+      return FailLoadWidget(getData);
+    } else if (listData.length == 0) {
       return LoadingWidget();
     }
 
@@ -103,7 +106,7 @@ class NewsListState extends State<NewsListPage> {
     index -= 1;
     // i为奇数，渲染分割线
     if (index.isOdd) {
-      return new Divider(height: 1.0);
+      return Divider(height: 1.0);
     }
 
     index = index ~/ 2;

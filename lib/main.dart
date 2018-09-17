@@ -54,11 +54,11 @@ class MainState extends State<MyApp> with SingleTickerProviderStateMixin {
 
       //页面主题色
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: colors[_index],
       ),
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: colors[_index],
+          // backgroundColor: colors[_index],
           title: Text(
             appBarTitles[_index],
           ),
