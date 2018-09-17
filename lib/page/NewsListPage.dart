@@ -5,7 +5,6 @@
  */
 
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_oschina/widgets/LoadingWidget.dart';
 import 'package:flutter_oschina/widgets/SliderView.dart';
@@ -34,9 +33,9 @@ class NewsListState extends State<NewsListPage> {
   }
 
   Future getData() async {
-    String url = Api.NEWS_LIST + "?pageIndex=1&pageSize=10";
-    var response = await HttpUtil().get(url);
-    print('newslist接收到:$response');
+    String url = Api.NEWS_LIST;
+    var data = {'pageIndex': 1, 'pageSize': 10};
+    var response = await HttpUtil().get(url, data: data);
 
     setState(() {
       listData = response['msg']['news']['data'];
