@@ -17,7 +17,8 @@ class NewsListPage extends StatefulWidget {
   State<StatefulWidget> createState() => NewsListState();
 }
 
-class NewsListState extends State {
+class NewsListState extends State<NewsListPage>
+    with AutomaticKeepAliveClientMixin {
   //轮播图
   List imgs = [];
 
@@ -34,6 +35,7 @@ class NewsListState extends State {
   Future getData() async {
     String url = Api.NEWS_LIST + "?pageIndex=1&pageSize=10";
     var response = await HttpUtil().get(url);
+    print('newslist接收到:$response');
     setState(() {
       imgs = response['msg']['slide'];
       listData = response['msg']['news']['data'];
@@ -77,6 +79,7 @@ class NewsListState extends State {
     if (listData == null || listData.length == 0) {
       return LoadingWidget();
     }
+
     return Scaffold(
         body: ListView.builder(
       itemCount: listData.length * 2 + 1,
@@ -167,4 +170,14 @@ class NewsListState extends State {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    print('News dispose');
+    super.dispose();
+  }
+
+  // TODO: implement wantKeepAlive
+  @override
+  bool get wantKeepAlive => true;
 }

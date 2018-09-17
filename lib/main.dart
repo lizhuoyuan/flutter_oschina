@@ -16,11 +16,11 @@ class MyApp extends StatefulWidget {
   }
 }
 
-class MainState extends State<MyApp> {
+class MainState extends State<MyApp> with SingleTickerProviderStateMixin {
   //当前选中的index
   int _index = 0;
 
-  // 页面顶部的大标题（也是TabItem上的文本）
+  // 页面顶部的大标题（也是TabItem上的文本和图标）
   var appBarTitles = ['资讯', '动弹', '发现', '我的'];
   var icons = [
     Icons.fiber_new,
@@ -38,6 +38,14 @@ class MainState extends State<MyApp> {
     MyInfoListPage()
   ];
 
+  TabController pageController;
+
+  @override
+  void initState() {
+    pageController = TabController(length: pages.length, vsync: this);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -54,7 +62,12 @@ class MainState extends State<MyApp> {
             appBarTitles[_index],
           ),
         ),
-        body: pages[_index],
+        body: TabBarView(
+          children: pages,
+          controller: pageController,
+          physics: NeverScrollableScrollPhysics(),
+        ),
+        //pages[_index],
         bottomNavigationBar: BottomNavigationBar(
           items: _getBottomNavItem(),
           currentIndex: _index,
@@ -62,14 +75,7 @@ class MainState extends State<MyApp> {
           fixedColor: Colors.green,
           type: BottomNavigationBarType.shifting,
         ),
-        /**
-         * CupertinoTabBar(
-            items: _getBottomNavItem(),
-            currentIndex: _index,
-            onTap: _onTap,
-            activeColor: Colors.green,
-            )
-         */
+
         // drawer属性用于为当前页面添加一个侧滑菜单
         drawer: DrawerPage(),
       ),
@@ -96,5 +102,6 @@ class MainState extends State<MyApp> {
     setState(() {
       _index = value;
     });
+    pageController.index = _index;
   }
 }
