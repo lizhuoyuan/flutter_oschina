@@ -38,11 +38,12 @@ class MainState extends State<MyApp> with SingleTickerProviderStateMixin {
     MyInfoListPage()
   ];
 
+  //tabbarView 的控制器
   TabController pageController;
 
   @override
   void initState() {
-    pageController = TabController(length: pages.length, vsync: this);
+    //pageController = TabController(length: pages.length, vsync: this);
     super.initState();
   }
 
@@ -62,10 +63,14 @@ class MainState extends State<MyApp> with SingleTickerProviderStateMixin {
             appBarTitles[_index],
           ),
         ),
-        body: TabBarView(
+        /*body: TabBarView(
           children: pages,
           controller: pageController,
           physics: NeverScrollableScrollPhysics(),
+        )*/
+        body: IndexedStack(
+          children: pages,
+          index: _index,
         ),
         //pages[_index],
         bottomNavigationBar: BottomNavigationBar(
@@ -102,6 +107,6 @@ class MainState extends State<MyApp> with SingleTickerProviderStateMixin {
     setState(() {
       _index = value;
     });
-    pageController.index = _index;
+    //pageController.index = _index;
   }
 }

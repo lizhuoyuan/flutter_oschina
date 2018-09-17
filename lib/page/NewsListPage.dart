@@ -17,13 +17,14 @@ class NewsListPage extends StatefulWidget {
   State<StatefulWidget> createState() => NewsListState();
 }
 
-class NewsListState extends State<NewsListPage>
-    with AutomaticKeepAliveClientMixin {
+class NewsListState extends State<NewsListPage> {
   //轮播图
   List imgs = [];
 
   //下面的列表
   var listData = [];
+
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -36,9 +37,10 @@ class NewsListState extends State<NewsListPage>
     String url = Api.NEWS_LIST + "?pageIndex=1&pageSize=10";
     var response = await HttpUtil().get(url);
     print('newslist接收到:$response');
+
     setState(() {
-      imgs = response['msg']['slide'];
       listData = response['msg']['news']['data'];
+      imgs = response['msg']['slide'];
     });
   }
 
@@ -81,17 +83,19 @@ class NewsListState extends State<NewsListPage>
     }
 
     return Scaffold(
-        body: ListView.builder(
-      itemCount: listData.length * 2 + 1,
-      itemBuilder: _renderRow,
-    ));
+        body: RefreshIndicator(
+            child: ListView.builder(
+              itemCount: listData.length * 2 + 1,
+              itemBuilder: _renderRow,
+            ),
+            onRefresh: getData));
   }
 
   /*  
    * 加载资讯页的列表
    */
   Widget _renderRow(BuildContext context, int index) {
-    if (index == 0) {
+    if (index == 0 && imgs.length > 0) {
       return Container(
         height: 250.0,
         child: SliderView(imgs),
@@ -176,8 +180,4 @@ class NewsListState extends State<NewsListPage>
     print('News dispose');
     super.dispose();
   }
-
-  // TODO: implement wantKeepAlive
-  @override
-  bool get wantKeepAlive => true;
 }
