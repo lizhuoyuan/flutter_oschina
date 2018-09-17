@@ -28,7 +28,7 @@ class MainState extends State<MyApp> with SingleTickerProviderStateMixin {
     Icons.disc_full,
     Icons.person
   ];
-  var colors = [Colors.blue, Colors.grey, Colors.green, Colors.red];
+  var colors = [Colors.blue, Colors.pink, Colors.green, Colors.red];
 
   //显示的page页面
   var pages = [
