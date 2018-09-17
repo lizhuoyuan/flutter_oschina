@@ -152,6 +152,13 @@ class TweetListState extends State<TweetsListPage> {
           child: gd,
           padding: EdgeInsets.all(26.0),
           height: getRow(imglist.length) * 140.0,
+        ),
+        Padding(
+          padding: EdgeInsets.only(right: 10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[Text(list[index]['pubDate'])],
+          ),
         )
       ],
     );
