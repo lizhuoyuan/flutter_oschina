@@ -39,7 +39,7 @@ class MainState extends State<MyApp> with SingleTickerProviderStateMixin {
   ];
 
   //tabbarView 的控制器
-  TabController pageController;
+  //TabController pageController;
 
   @override
   void initState() {
