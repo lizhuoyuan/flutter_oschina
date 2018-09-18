@@ -93,7 +93,7 @@ class NewsListState extends State<NewsListPage> {
             onRefresh: getData));
   }
 
-  /*  
+  /*
    * 加载资讯页的列表
    */
   Widget _renderRow(BuildContext context, int index) {

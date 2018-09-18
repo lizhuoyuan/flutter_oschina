@@ -72,7 +72,6 @@ class MainState extends State<MyApp> with SingleTickerProviderStateMixin {
           children: pages,
           index: _index,
         ),
-        //pages[_index],
         bottomNavigationBar: BottomNavigationBar(
           items: _getBottomNavItem(),
           currentIndex: _index,
