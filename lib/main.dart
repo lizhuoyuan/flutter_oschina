@@ -58,6 +58,7 @@ class MainState extends State<MyApp> with SingleTickerProviderStateMixin {
       ),
       home: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           // backgroundColor: colors[_index],
           title: Text(
             appBarTitles[_index],
