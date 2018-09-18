@@ -162,9 +162,12 @@ class TweetListState extends State<TweetsListPage> {
         )
       ],
     );
-    return Container(
-      padding: EdgeInsets.all(5.0),
-      child: columns,
+    return InkWell(
+      onTap: null,
+      child: Container(
+        padding: EdgeInsets.all(5.0),
+        child: columns,
+      ),
     );
   }
 
