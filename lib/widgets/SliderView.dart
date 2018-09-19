@@ -11,41 +11,41 @@ import 'package:flutter/material.dart';
 class SliderView extends StatefulWidget {
   // data表示轮播图中的数据
   List data;
+
+  //自动轮播
   bool autoPlay;
 
-  SliderView(data, {autoPlay: false}) {
+  //自动轮播时间(毫秒)
+  int autoPlayTime;
+
+  SliderView(data, {bool autoPlay = false, int autoPlayTime = 5000}) {
     this.data = data;
     this.autoPlay = autoPlay;
+    this.autoPlayTime = autoPlayTime;
   }
 
   // 可以在构造方法中传参供SlideViewState使用
   // 或者也可以不传参数，直接在SlideViewState中通过this.widget.data访问SlideView中的data变量
   @override
-  State<StatefulWidget> createState() => SliderViewState(data, autoPlay);
+  State<StatefulWidget> createState() => SliderViewState();
 }
 
 class SliderViewState extends State<SliderView>
     with SingleTickerProviderStateMixin {
   // TabController为TabBarView组件的控制器
   TabController tabController;
-  List slideData;
-  bool autoPlay = false;
-
-  SliderViewState(data, autoPlay) {
-    slideData = data;
-    this.autoPlay = autoPlay;
-  }
 
   @override
   void initState() {
-    tabController = TabController(length: slideData.length, vsync: this);
+    tabController = TabController(length: widget.data.length, vsync: this);
     super.initState();
-    if (autoPlay) autoplay();
+    if (this.widget.autoPlay) autoplay();
   }
 
   void autoplay() {
-    Timer.periodic(Duration(seconds: 5), (timer) {
-      if (tabController.index == slideData.length - 1) {
+    Timer.periodic(Duration(milliseconds: widget.autoPlayTime ?? 5000),
+        (timer) {
+      if (tabController.index == widget.data.length - 1) {
         tabController.index = 0;
       } else {
         tabController.index++;
@@ -57,7 +57,7 @@ class SliderViewState extends State<SliderView>
   Widget build(BuildContext context) {
     return TabBarView(
         controller: tabController,
-        children: slideData
+        children: widget.data
             .map((data) => Stack(
                   alignment: Alignment.bottomLeft,
                   children: <Widget>[
