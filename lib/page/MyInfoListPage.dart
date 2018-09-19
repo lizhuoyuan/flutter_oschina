@@ -9,7 +9,15 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class MyInfoListPage extends StatelessWidget {
+class MyInfoListPage extends StatefulWidget {
+  @override
+  MyInfoListPageState createState() {
+    return new MyInfoListPageState();
+  }
+}
+
+class MyInfoListPageState extends State<MyInfoListPage>
+    with AutomaticKeepAliveClientMixin {
   TextEditingController accountController = TextEditingController();
 
   @override
@@ -49,9 +57,6 @@ class MyInfoListPage extends StatelessWidget {
     );
   }
 
-  /*
-   * 存储数据
-   */
   Future _onClick() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String account = accountController.text;
@@ -59,9 +64,6 @@ class MyInfoListPage extends StatelessWidget {
     print('存储acount为:$account');
   }
 
-  /*
-   * 读取数据
-   */
   Future _readShared() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String account = preferences.get('account');
@@ -69,12 +71,19 @@ class MyInfoListPage extends StatelessWidget {
     accountController.text = account;
   }
 
-  /*
-   * 删除数据
-   */
   Future _removeShared() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.remove('account');
     print('删除acount成功');
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print('myinfo dispose');
+  }
+
+  // TODO: implement wantKeepAlive
+  @override
+  bool get wantKeepAlive => true;
 }

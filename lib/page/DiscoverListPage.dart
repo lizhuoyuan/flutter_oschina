@@ -12,7 +12,8 @@ class DiscoverListPage extends StatefulWidget {
 }
 
 class DiscoverListState extends State<DiscoverListPage>
-    with TickerProviderStateMixin {
+    // ignore: mixin_inference_inconsistent_matching_classes
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,6 +68,16 @@ class DiscoverListState extends State<DiscoverListPage>
       title: Text('无与伦比的标题+$index'),
     );
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print('discover dispose');
+  }
+
+  // TODO: implement wantKeepAlive
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {

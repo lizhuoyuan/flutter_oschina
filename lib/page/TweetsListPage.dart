@@ -11,7 +11,8 @@ class TweetsListPage extends StatefulWidget {
   State<StatefulWidget> createState() => TweetListState();
 }
 
-class TweetListState extends State<TweetsListPage> {
+class TweetListState extends State<TweetsListPage>
+    with AutomaticKeepAliveClientMixin {
   List hotList = [];
   List normalList = [];
 
@@ -181,4 +182,14 @@ class TweetListState extends State<TweetsListPage> {
     }
     return b;
   }
+
+  @override
+  void dispose() {
+    print('tweets dispose');
+    super.dispose();
+  }
+
+  // 常驻内存
+  @override
+  bool get wantKeepAlive => true;
 }

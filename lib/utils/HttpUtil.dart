@@ -4,6 +4,8 @@
  * 网络请求封装
  */
 
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 
 class HttpUtil {
@@ -37,23 +39,20 @@ class HttpUtil {
     dio = new Dio(options);
   }
 
-  get(url, {data, options, cancelToken}) async {
+  get(url, {data, options, CancelToken cancelToken}) async {
     print('get请求启动! url：$url ,body: $data');
     Response response;
     try {
-      response = await dio.get(
-        url,
-        data: data,
-        cancelToken: cancelToken,
-      );
+      response = await dio.get(url, data: data, cancelToken: cancelToken);
       print('get请求成功!response.data：${response.data}');
+      return response.data;
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) {
         print('get请求取消! ' + e.message);
       }
       print('get请求发生错误：$e');
     }
-    return response.data;
+    return null;
   }
 
   post(url, {data, options, cancelToken}) async {

@@ -4,20 +4,24 @@
  * 轮播图组件
  */
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class SliderView extends StatefulWidget {
   // data表示轮播图中的数据
   List data;
+  bool autoPlay;
 
-  SliderView(data) {
+  SliderView(data, {autoPlay: false}) {
     this.data = data;
+    this.autoPlay = autoPlay;
   }
 
   // 可以在构造方法中传参供SlideViewState使用
   // 或者也可以不传参数，直接在SlideViewState中通过this.widget.data访问SlideView中的data变量
   @override
-  State<StatefulWidget> createState() => SliderViewState(data);
+  State<StatefulWidget> createState() => SliderViewState(data, autoPlay);
 }
 
 class SliderViewState extends State<SliderView>
@@ -25,15 +29,28 @@ class SliderViewState extends State<SliderView>
   // TabController为TabBarView组件的控制器
   TabController tabController;
   List slideData;
+  bool autoPlay = false;
 
-  SliderViewState(data) {
+  SliderViewState(data, autoPlay) {
     slideData = data;
+    this.autoPlay = autoPlay;
   }
 
   @override
   void initState() {
     tabController = TabController(length: slideData.length, vsync: this);
     super.initState();
+    if (autoPlay) autoplay();
+  }
+
+  void autoplay() {
+    Timer.periodic(Duration(seconds: 5), (timer) {
+      if (tabController.index == slideData.length - 1) {
+        tabController.index = 0;
+      } else {
+        tabController.index++;
+      }
+    });
   }
 
   @override

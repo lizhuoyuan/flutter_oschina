@@ -16,7 +16,7 @@ class MyApp extends StatefulWidget {
   }
 }
 
-class MainState extends State<MyApp> with SingleTickerProviderStateMixin {
+class MainState extends State<MyApp> {
   //当前选中的index
   int _index = 0;
 
@@ -39,17 +39,17 @@ class MainState extends State<MyApp> with SingleTickerProviderStateMixin {
   ];
 
   //tabbarView 的控制器
-  //TabController pageController;
+  PageController pageController;
 
   @override
   void initState() {
-    //pageController = TabController(length: pages.length, vsync: this);
+    pageController = PageController();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       title: 'Flutter Demo',
 
       //页面主题色
@@ -64,15 +64,16 @@ class MainState extends State<MyApp> with SingleTickerProviderStateMixin {
             appBarTitles[_index],
           ),
         ),
-        /*body: TabBarView(
+        body: PageView(
           children: pages,
           controller: pageController,
           physics: NeverScrollableScrollPhysics(),
-        )*/
-        body: IndexedStack(
+        )
+            /*body: IndexedStack(
           children: pages,
           index: _index,
-        ),
+        )*/
+            ,
         bottomNavigationBar: BottomNavigationBar(
           items: _getBottomNavItem(),
           currentIndex: _index,
@@ -103,10 +104,17 @@ class MainState extends State<MyApp> with SingleTickerProviderStateMixin {
   }
 
   void _onTap(int value) {
-    print(value);
-    setState(() {
-      _index = value;
-    });
-    //pageController.index = _index;
+    if (value != _index) {
+      print(value);
+
+      pageController.animateToPage(value,
+          duration: Duration(milliseconds: 300), curve: Curves.ease);
+
+      //pageController.jumpToPage(value);
+
+      setState(() {
+        _index = value;
+      });
+    }
   }
 }
