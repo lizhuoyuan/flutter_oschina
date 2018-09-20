@@ -2,6 +2,7 @@
 
 基于flutter实现的开源中国客户端
 
+![](images/app4.png)
 ![](images/app1.png)
 ![](images/app2.png)
 ![](images/app3.png)
