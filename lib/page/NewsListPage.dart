@@ -29,8 +29,8 @@ class NewsListState extends State<NewsListPage>
 
   @override
   void initState() {
-    //getData();
-    initTestData();
+    getData();
+    //initTestData();
     super.initState();
   }
 
