@@ -40,10 +40,11 @@ class NewsListState extends State<NewsListPage>
     var response = await HttpUtil().get(url, data: data);
 
     if (response != null) {
-      setState(() {
+      initTestData();
+      /* setState(() {
         listData = response['msg']['news']['data'];
         imgs = response['msg']['slide'];
-      });
+      });*/
     } else {
       initTestData();
     }
@@ -79,6 +80,9 @@ class NewsListState extends State<NewsListPage>
       map['commCount'] = 5;
       listData.add(map);
     }
+    setState(() {
+      listData;
+    });
   }
 
   @override
