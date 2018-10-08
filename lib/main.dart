@@ -6,6 +6,8 @@ import 'package:flutter_oschina/page/MyInfoListPage.dart';
 import 'package:flutter_oschina/page/NewsDetailPage.dart';
 import 'package:flutter_oschina/page/NewsListPage.dart';
 import 'package:flutter_oschina/page/TweetsListPage.dart';
+import 'package:flutter_oschina/model/AppModel.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 void main() => runApp(new MyApp());
 
@@ -41,6 +43,8 @@ class MainState extends State<MyApp> {
   //tabbarView 的控制器
   PageController pageController;
 
+  AppModel appModel = AppModel();
+
   @override
   void initState() {
     pageController = PageController();
@@ -49,45 +53,49 @@ class MainState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return ScopedModel<AppModel>(
+      model: appModel,
+      child: MaterialApp(
+        title: 'Flutter Demo',
 
-      //页面主题色
-      theme: ThemeData(
-        primarySwatch: colors[_index],
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          // backgroundColor: colors[_index],
-          title: Text(
-            appBarTitles[_index],
-          ),
+        //页面主题色
+        theme: ThemeData(
+          //primaryColor: appModel.nightMode ? Colors.black : colors[_index],
+          primarySwatch: colors[_index],
         ),
-        body: PageView(
-          children: pages,
-          controller: pageController,
-          physics: NeverScrollableScrollPhysics(),
-        )
-            /*body: IndexedStack(
+        home: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            // backgroundColor: colors[_index],
+            title: Text(
+              appBarTitles[_index],
+            ),
+          ),
+          body: PageView(
+            children: pages,
+            controller: pageController,
+            physics: NeverScrollableScrollPhysics(),
+          )
+              /*body: IndexedStack(
           children: pages,
           index: _index,
         )*/
-            ,
-        bottomNavigationBar: BottomNavigationBar(
-          items: _getBottomNavItem(),
-          currentIndex: _index,
-          onTap: _onTap,
-          fixedColor: Colors.green,
-          type: BottomNavigationBarType.shifting,
-        ),
+              ,
+          bottomNavigationBar: BottomNavigationBar(
+            items: _getBottomNavItem(),
+            currentIndex: _index,
+            onTap: _onTap,
+            fixedColor: Colors.green,
+            type: BottomNavigationBarType.shifting,
+          ),
 
-        // drawer属性用于为当前页面添加一个侧滑菜单
-        drawer: DrawerPage(),
+          // drawer属性用于为当前页面添加一个侧滑菜单
+          drawer: DrawerPage(),
+        ),
+        routes: <String, WidgetBuilder>{
+          'NewsDetail': (_) => NewsDetailPage(),
+        },
       ),
-      routes: <String, WidgetBuilder>{
-        'NewsDetail': (_) => NewsDetailPage(),
-      },
     );
   }
 

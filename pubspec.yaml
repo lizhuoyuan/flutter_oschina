@@ -21,6 +21,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   shared_preferences: ^0.4.2
   dio: ^1.0.4
+  scoped_model: ^0.3.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
